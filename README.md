@@ -2,7 +2,7 @@
 
 This is my first attempt at using the [9DOF Stick](https://www.sparkfun.com/products/10724) from Sparkfun with the [mbed LPC1768](http://mbed.org/handbook/mbed-NXP-LPC1768).
 
-![image](9dof-mbed.png)
+![image](9DOF-mbed.png)
 
 ## Pin Layout
 
