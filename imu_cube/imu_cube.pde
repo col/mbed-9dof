@@ -58,27 +58,18 @@ public void draw() {
 void serialEvent (Serial serial) {
   try
   { 
+    serial.readBytesUntil('K');
     newKalmanX = readFloatUntil(serial, '\t');
-    newKalmanY = readFloatUntil(serial, '\t');    
-    serial.readBytesUntil('\n');   
+    newKalmanY = readFloatUntil(serial, '\n');        
     serial.clear();    
   } catch(Exception e) {
-    println( e ); 
-  }
-}
-
-public String readStringUntil(Serial serial, int inByte) {
-  byte temp[] = serial.readBytesUntil(inByte);
-  if (temp == null) {
-    return null;
-  } else {
-    return new String(temp);
+//    println( e ); 
   }
 }
 
 public float readFloatUntil(Serial serial, int inByte) {
   byte temp[] = serial.readBytesUntil(inByte);
-  if (temp == null || temp.length < 5) {
+  if (temp == null) {    
     return 0.0;
   } else {
     float value = get4bytesFloat(temp, 0);    

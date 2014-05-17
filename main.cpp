@@ -103,7 +103,8 @@ typedef union _data {
   char  s[4];
 } myData;
 
-myData testData;
+myData dataX;
+myData dataY;
 
 int main() {
     pc.baud(9600);            
@@ -139,19 +140,14 @@ int main() {
         kalman_update(&filter_y, acos(accel.y/R));
         
         kal.x = Rad2Dree * kalman_get_angle(&filter_x);
-        kal.y = Rad2Dree * kalman_get_angle(&filter_y);        
+        kal.y = Rad2Dree * kalman_get_angle(&filter_y);                
 
         timer = ProgramTimer.read_us();
 
-        testData.f = mafX.update(kal.x);
-        pc.printf("%c%c%c%c", testData.s[0], testData.s[1], testData.s[2], testData.s[3]);
-        pc.printf("\t");
+        dataX.f = mafX.update(kal.x);
+        dataY.f = mafY.update(kal.y);
+        pc.printf("K%c%c%c%c\t%c%c%c%c\n", dataX.s[0], dataX.s[1], dataX.s[2], dataX.s[3], dataY.s[0], dataY.s[1], dataY.s[2], dataY.s[3]);
 
-        testData.f = mafY.update(kal.y);
-        pc.printf("%c%c%c%c", testData.s[0], testData.s[1], testData.s[2], testData.s[3]);
-        pc.printf("\t");        
-
-        pc.printf("\n");                           
         wait(0.01);        
     }
 }

@@ -58,17 +58,13 @@ void draw()
 void serialEvent (Serial arduino) {
   try
   {
-  
-//    newGyroX = readFloatUntil(arduino, '\t');
-//    newGyroY = readFloatUntil(arduino, '\t');  
-
-//    newAccX = readFloatUntil(arduino, '\t');
-//    newAccY = readFloatUntil(arduino, '\t');
-
+    // Find the start of a packet
+    readStringUntil(arduino, 'K');
+    // Read the X and Y values
     newKalmanX = readFloatUntil(arduino, '\t');
-    newKalmanY = readFloatUntil(arduino, '\t');
-  
-    arduino.clear(); // Clear buffer
+    newKalmanY = readFloatUntil(arduino, '\n');
+    // Clear buffer    
+    arduino.clear();     
   } catch(Exception e) {
 //   println(e); 
   }
