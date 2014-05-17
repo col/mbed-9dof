@@ -60,11 +60,11 @@ MBED_OBJ += mbed/$(TARGET_BOARD)/TOOLCHAIN_GCC_ARM/$(SYSTEM_NAME).o
 # directories
 INC_DIRS = mbed mbed/$(TARGET_BOARD) mbed/$(TARGET_BOARD)/TOOLCHAIN_GCC_ARM
 # app headers directories (remove comment and add more files)
-INC_DIRS += ADXL345 HMC5843 ITG3200 kalman
+INC_DIRS += ADXL345 HMC5843 ITG3200 kalman MovingAverageFilter
 
 SRC_DIRS = mbed mbed/$(TARGET_BOARD) mbed/$(TARGET_BOARD)/TOOLCHAIN_GCC_ARM .
 # app source directories (remove comment and add more files)
-SRC_DIRS += ADXL345 HMC5843 ITG3200 kalman
+SRC_DIRS += ADXL345 HMC5843 ITG3200 kalman MovingAverageFilter
 
 OUT_DIR = build
 

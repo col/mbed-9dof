@@ -3,6 +3,7 @@
 #include "ADXL345.h"
 #include "ITG3200.h"
 #include "kalman.c"
+#include "MAF.h"
 
 #define Rad2Dree       57.295779513082320876798154814105
 
@@ -11,6 +12,8 @@ ADXL345 acc(p28, p27);      // sda, scl
 ITG3200 gyr(p28, p27);      // sda, scl
 Serial pc(USBTX, USBRX);    // tx, rx
 Timer ProgramTimer;
+MAF mafX;
+MAF mafY;
 
 typedef struct 
 { 
@@ -140,11 +143,11 @@ int main() {
 
         timer = ProgramTimer.read_us();
 
-        testData.f = kal.x;        
+        testData.f = mafX.update(kal.x);
         pc.printf("%c%c%c%c", testData.s[0], testData.s[1], testData.s[2], testData.s[3]);
         pc.printf("\t");
 
-        testData.f = kal.y;        
+        testData.f = mafY.update(kal.y);
         pc.printf("%c%c%c%c", testData.s[0], testData.s[1], testData.s[2], testData.s[3]);
         pc.printf("\t");        
 
